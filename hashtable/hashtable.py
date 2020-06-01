@@ -16,9 +16,14 @@ class HashTableEntry:
     def __repr__(self):
         return f'HashTableEntry({repr(self.key)}, {repr(self.value)})'
 
+    # self.next to handle the linked list part.
+
 
 # Hash table can't have fewer than this many slots
 MIN_CAPACITY = 8
+
+# Create a SLL here and check if
+SLL
 
 
 class HashTable:
@@ -103,11 +108,13 @@ class HashTable:
 
         Implement this.
         """
+
+        # Create a linked list here. If there are any collisions, it will either be a LL or not.
+        # index = self.storage[index].head
+
         # Your code here
         slot = self.hash_index(key)
         self.slots[slot] = HashTableEntry(key, value)
-        print(self.slots)
-        print("\n")
 
     def delete(self, key):
         """
@@ -138,7 +145,6 @@ class HashTable:
         hash_entry = self.slots[slot]
 
         if hash_entry is not None:
-            print(hash_entry.value)
             return hash_entry.value
 
         return None
