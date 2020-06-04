@@ -38,6 +38,8 @@ class LinkedList:
         while current is not None:
             if current.value == target:
                 return current
+            elif current.value == None:
+                return None
             current = current.next
 
     def remove(self, target):
@@ -97,6 +99,21 @@ class HashTable:
         # Removing an item? Decrement the count.
 
         # When is it overloaded? Determined by the spec. In our case load factor > 0.7
+        total = 0
+​
+        for i in range(len(self.storage)):
+            if self.storage[i] != None:
+​
+                current = self.storage[i].head
+​
+                while current.next is not None:
+                    total += 1
+​
+                    current = current.next
+​
+                total += 1
+​
+        return total / self.get_num_slots()
 
     def fnv1(self, key):
         """
@@ -219,6 +236,9 @@ class HashTable:
 
         hash_entry = self.storage[index]
 
+        if hash_entry == None:
+            return None
+
         if hash_entry.head.key == key:
             return hash_entry.head.value
 
@@ -258,7 +278,6 @@ class HashTable:
                 while current.next is not None:
                     self.put(current.key, current.value)
                     current = current.next
-                # index = self.hash_index(current.key)
                 self.put(current.key, current.value)
 
 
